@@ -37,6 +37,9 @@ class BankAccount:
         if currency.lower() == 'nis':
             return f'{self.__balance} NIS'
 
+    def setBalance(self, money):
+        self.__balance = money
+
     def addToBalance(self, deposit):
         self.__balance += deposit
 
@@ -75,7 +78,6 @@ class BankAccount:
 
     def __ne__(self, other):
         return self.__balance != other.__balance  # שים לב שאין לממש לוגיקה חדשה  - לא הבנתי.
-
     def __ge__(self, other):
         return self.__balance >= other.__balance
 
@@ -123,6 +125,16 @@ print(keynan.getBalance())
 
 keynan = keynan-500
 print(keynan.getBalance())
+
+print(keynan>noam)
+print(keynan<=noam)
+print(keynan!=noam)
+keynan.setBalance(500)
+noam.setBalance(500)
+print(keynan==noam)
+print(keynan<noam)
+print(keynan>=noam)
+
 # combined = keynan + noam
 # print(keynan.getBalance())
 # print(noam.getBalance('GBP'))
