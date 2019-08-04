@@ -48,8 +48,10 @@ class BankAccount:
                                self.pName+' and '+other.pName,
                                self.lName+'-'+other.lName,
                                self.__balance+other.__balance)
-        if isinstance(other, int):  #
-            return self.__balance + other
+        if isinstance(other, int):
+            temp = BankAccount(self.accNumber,self.pName,self.lName,self.__balance)
+            temp.__balance+=other
+            return temp
 
     def __iadd__(self, other):
         if isinstance(other, int):
@@ -57,8 +59,10 @@ class BankAccount:
             return self
 
     def __sub__(self, other):
-        if isinstance(other, int):  #
-            return self.__balance - other
+        if isinstance(other, int):
+            temp = BankAccount(self.accNumber, self.pName, self.lName, self.__balance)
+            temp.__balance -= other
+            return temp
         else:
             return None
 
@@ -85,7 +89,7 @@ class BankAccount:
         return self.__balance < other.__balance
 
     def __repr__(self):
-        return f'BankAccount({self.accNumber}, {self.pName}, {self.lName}, {self.__balance})'
+        return f'\nBankAccount({self.accNumber}, {self.pName}, {self.lName}, {self.__balance})\n'
 
     def __str__(self):
         return f'\nBankAccount(class):\n' \
@@ -101,16 +105,26 @@ noam = BankAccount(330741444,
                   'Noam',
                   'Tobias',
                   7001)
+
 print(keynan, noam)
 print(keynan.__repr__())
+
 keynan+=4000
 print(keynan.getBalance())
+
 keynan-=500
 print(keynan.getBalance())
-print(keynan-500)
-combined = keynan + noam
+
+keynan+500
 print(keynan.getBalance())
+
+keynan = keynan+500
 print(keynan.getBalance())
-print(noam.getBalance('GBP'))
-print(combined)
-print('Balance: '+combined.getBalance('Usd'))
+
+keynan = keynan-500
+print(keynan.getBalance())
+# combined = keynan + noam
+# print(keynan.getBalance())
+# print(noam.getBalance('GBP'))
+# print(combined)
+# print('Balance: '+combined.getBalance('Usd'))
